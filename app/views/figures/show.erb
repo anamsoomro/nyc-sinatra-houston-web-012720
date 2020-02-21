@@ -1,0 +1,71 @@
+
+
+<!--
+
+<table style="border: 1px solid black">
+  <tr>
+    <th>Name</th>
+    <th>Landmark</th>
+    <th>Year Built</th>
+    <th>Title</th>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black"><%= @figure.name %></td>
+  </tr>
+  <tr>
+    <% @figure.landmarks.each do |landmark| %>
+      <td style="border: 1px solid black"><%= landmark.name %><td>
+    <% end %>
+  </tr>
+  <tr>
+    <% @figure.landmarks.each do |landmark| %>
+      <td style="border: 1px solid black"><%= landmark.year_completed %><td>
+    <% end %>
+  </tr>
+  <tr>
+    <% @figure.titles.each do |title| %>
+      <td style="border: 1px solid black"><%= title.name %><td>
+    <% end %>
+  </tr>
+</table>
+-->
+
+<label>Name:</label><br>
+<p><%= @figure.name %></p>
+
+<br>
+
+
+<label>Landmarks</label><br>
+<ul>
+  <% if !@figure.landmarks.empty?%>
+    <% @figure.landmarks.each do |landmark| %>
+      <li><%= landmark.name %> (year: <%= landmark.year_completed %>)</li><br>
+    <% end %>
+  <% end%>
+</ul>
+
+<br>
+
+<label>Titles:</label><br>
+<ul>
+  <% if !@figure.titles.empty?%>
+    <% @figure.titles.each do |title| %>
+      <li><%= title.name %></li><br>
+    <% end %>
+  <% end %>
+</ul>
+
+<button>
+  <a class="button" href="/figures/<%= @figure.id %>/edit">Edit Figure</a>
+</button>
+<br>
+<form action="/figures/<%= @figure.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Figure">
+</form>
+
+<br>
+<button>
+  <a class="button" href="/figures">Figures</a>
+</button>
